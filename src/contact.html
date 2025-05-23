@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	@@include('html/head.html',{
+	"title":"GSEURO - contact"
+	})
+	<body>
+    @@include('html/header.html',{})
+    @@include('html/nav-bar.html',{})
+		<main class="contact">
+			<div class="container">
+				<h1 class="contact__title">
+					Contactez-nous — Des solutions fiables en câbles et fils
+				</h1>
+				<p class="contact__subtitle">
+					Que vous ayez besoin de solutions sur mesure ou d’un approvisionnement en gros, notre équipe est à votre écoute. N’hésitez pas à nous contacter pour discuter de votre projet ou demander un devis.
+				</p>
+			</div>
+			<div class="contact__container">
+				<form novalidate action="/submit-form" method="POST" enctype="multipart/form-data" class="form" id="form">
+					<div class="form__content">
+						<div class="form__left">
+							<label for="societe">Nom de la société</label>
+							<input type="text" placeholder="Société" class="form__input" id="company" name="company">
+							<label for="email">Votre e-mail*</label>
+							<input type="email" placeholder="Mail" class="form__input" id="mail" name="email" required>
+							<span class="error" aria-live="polite"></span>
+						</div>
+						<div class="form__right">
+							<label for="nom">Votre nom et prénom</label>
+							<input type="text" placeholder="Nom, prénom" class="form__input" id="first-second-name" name="fullName">
+							<label for="telephone">Votre téléphone*</label>
+							<input type="text" placeholder="Téléphone" class="form__input" id="phone" name="telephone" required>
+							<span class="error" aria-live="polite"></span>
+						</div>
+					</div>
+					<div class="form__group">
+						<label for="message">Votre message</label>
+						<input type="text" placeholder="Message" class="form__input" id="message" name="message">
+					</div>
+					<div class="form__group">
+						<button type="submit" class="form__button form__input">Envoyer</button>
+					</div>
+					<div class="result" id="result"></div>
+				</form>
+			</div>
+		</main>
+		@@include('html/footer.html',{})
+		<script type="module" src="js/app.min.js"></script>
+	</body>
+</html>

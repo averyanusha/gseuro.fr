@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+	 <head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<link rel="stylesheet" href="css/style.min.css">
+	<title>GSEURO - actualités</title>
+</head>
+	<body>
+		<header class="header">
+   <div class="container">
+      <ul class="header__menu menu">
+         <li class="menu__item">
+            <a href="tel:+33 (0)3 89 57 00 01">+33 (0)3 89 57 00 01</a> </li>
+         <li class="menu__item">
+            <a href="mailto:info@gseuro.fr">info@gseurodiffusion.fr</a>
+         </li>
+         <li class="menu__item search">
+            <input type="search" placeholder="recherche" class="search__input" autocomplete="off">
+            <button class="search__button _icon-search"></button>
+            <div class="search__result"></div>
+         </li class="menu__item">
+         <li id="rateHeader" class="menu__item">
+            <a href="cours-de-cuivre.html" class="item__link"></a>
+         </li>
+      </ul>
+   </div>
+</header>
+		<nav class="nav">
+  <ul class="nav__menu menu">
+    <li class="nav__left">
+      <a href="index.html" class="nav__link">
+        <img src="img/logo-gseuro.png" alt="logo-gseuro">
+      </a>
+    </li>
+    <li>
+      <ul class="nav__right">
+        <li class="nav__item">
+          <a href="produits.html" class="nav__link">
+            Nos produits
+          </a>
+        </li>
+        <li class="nav__item">
+          <a href="agent-commercial.html" class="nav__link">
+            Nos services
+          </a>
+        </li>
+        <li class="nav__item">
+          <a href="groupe.html" class="nav__link">
+            A propos de nous
+          </a>
+        </li>
+        <li class="nav__item">
+          <a href="cours-de-cuivre.html" class="nav__link">
+            Cours du cuivre
+          </a>
+        </li>
+        <li class="nav__item">
+          <a href="actualites.html" class="nav__link">
+            Actualites
+          </a>
+        </li>
+        <li class="nav__item">
+          <a href="contact.html" class="nav__link">
+            Contact
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<button type=button class="icon__menu">
+  <span></span>
+  <span></span>
+</button>
+		<main>
+		</main>
+		<section id="contact" class="_contact">
+  <div class="contact__content container">
+    <form action="/submit-form" method="POST" enctype="multipart/form-data" class="form" id="form">
+      <input type="text" placeholder="Société" class="form__input" id="company" name="company">
+      <input type="text" placeholder="Nom, prenom" class="form__input" id="first-second-name" name="fullName">
+      <input type="text" placeholder="* Téléphone" class="form__input" id="phone" name="telephone" required>
+      <span class="error" aria-live="polite"></span>
+      <input type="email" placeholder="* Mail" class="form__input" id="mail" name="email" required>
+      <span class="error" aria-live="polite"></span>
+      <button type="submit" class="form__button form__input">Envoyer</button>
+      <div class="result" id="result"></div>
+    </form>
+  </div>
+</section>
+		<footer class="footer">
+   <div class="footer__container container">
+      <div class="footer__body">
+         <div class="footer__column column">
+            <h5 class="footer__title">
+               <a href="../index.html" class="menu__link">
+                  <img src="../img/logo-gseuro.png" alt="logo-gseuro">
+                </a>
+            </h5>
+         </div>
+         <div class="footer__column column">
+            <h6 class="column__title">Enterpise</h6>
+            <a href="../groupe.html" class="column__link">Qui sommes-nous?</a>
+            <a href="../actualites.html" class="column__link">Actualites</a>
+            <a href="../contact.html" class="column__link">Contact</a>
+            <a href="" class="column__link">Politique de confidentialite</a>
+            <a href="" class="column__link">Cookies</a>
+            <a href="" class="column__link">Sitemap</a>
+         </div>
+         <div class="footer__column column">
+            <h6 class="column__title">Produits</h6>
+            <a href="../produits.html" class="column__link">Produits</a>
+            <a href="../agent-commercial.html" class="column__link">Nos partenaire</a>
+            <a href="../cours-de-cuivre.html" class="column__link">Cours de cuivre</a>
+         </div>
+         <div class="footer__column column">
+            <h6 class="column__title">Nous contacter</h6>
+            <a href="tel:+33 (0)3 89 57 00 01" class="column__link">+33 (0)3 89 57 00 01</a></li>
+            <a href="mailto:info@gseuro.fr" class="column__link">info@gseuro.fr</a>
+            <a href="https://maps.app.goo.gl/WeRdGpP1HLv5o2pW8" class="column__link">79 Av. Louis Blériot, 38590 Saint-Étienne-de-Saint-Geoirs</a>
+         </div>
+      </div>
+   </div>
+</footer>
+		<script type="module" src="js/app.min.js"></script>
+	</body>
+</html>

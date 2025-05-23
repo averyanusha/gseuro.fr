@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	@@include('html/head.html',{
+	"title":"GSEURO - agent commercial"
+	})
+	<body>
+		@@include('html/header.html',{})
+		@@include('html/nav-bar.html',{})
+		<main class="commercial hero">
+			<div class="commercial__content container">
+				<div class="commercial__left">
+					<h1 class="commercial__title">Achetez en Gros, Directement depuis un fabricant</h1>
+					<p class="commercial__description">Notre entreprise propose également un service de revente : grâce à nous, vous pouvez acheter en gros directement auprès du producteur.r</p>
+					<button class="commercial__button button">
+						<a href="contact.html" class="">Demander un devis</a>
+					</button>
+				</div>
+				<div class="commercial__right">
+					<img src="img/gseuro-agent-commercial.png" alt="gseuro-produits">
+				</div>
+			</div>
+		</main>
+		<section class="advantages">
+			<h2 class="advantages__title">Pourquoi Choisir Notre Service ?</h2>
+			<div class="advantages__items">
+				<div class="advantages__item item">
+					<h4 class="item__title">Accès direct au producteur</h4>
+					<p class="item__description">Éliminez les intermédiaires et bénéficiez de tarifs imbattables.</p>
+				</div>
+				<div class="advantages__item item">
+					<h4 class="item__title">Commandes en gros personnalisées</h4>
+					<p class="item__description">Nous adaptons nos offres à vos besoins spécifiques.</p>
+				</div>
+				<div class="advantages__item item">
+					<h4 class="item__title">Fiabilité & transparence</h4>
+					<p class="item__description">Un accompagnement de confiance à chaque étape du processus.</p>
+				</div>
+			</div>
+		</section>
+		<section class="questions container">
+			<h3 class="questions__title">FAQ (Foire aux questions)</h3>
+		</section>
+		@@include('html/form.html')
+		@@include('html/footer.html',{})
+		<script type="module" src="js/app.min.js"></script>
+	</body>
+</html>

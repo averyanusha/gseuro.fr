@@ -1,0 +1,14 @@
+<section id="contact" class="_contact">
+  <div class="contact__content container">
+    <form action="/submit-form" method="POST" enctype="multipart/form-data" class="form" id="form">
+      <input type="text" placeholder="Société" class="form__input" id="company" name="company">
+      <input type="text" placeholder="Nom, prenom" class="form__input" id="first-second-name" name="fullName">
+      <input type="text" placeholder="* Téléphone" class="form__input" id="phone" name="telephone" required>
+      <span class="error" aria-live="polite"></span>
+      <input type="email" placeholder="* Mail" class="form__input" id="mail" name="email" required>
+      <span class="error" aria-live="polite"></span>
+      <button type="submit" class="form__button form__input">Envoyer</button>
+      <div class="result" id="result"></div>
+    </form>
+  </div>
+</section>

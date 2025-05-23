@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	@@include('html/head.html',{
+	"title":"GSEURO - cours de cuivre"
+	})
+	<body>
+		@@include('html/header.html',{})
+		@@include('html/nav-bar.html',{})
+		<main>
+			<div class="container">
+				<button class="sticky-button button">
+					<a href="#contact">nous contacter</a>
+				</button>
+				<h1 id="rate" class="hero__title">Current rate</h1>
+				<div class="chart">
+					<canvas id="weeklyChart" class="chart__container"></canvas>
+				</div>
+				<div class="chart">
+					<canvas id="yearlyChart" class="chart__container"></canvas>
+				</div>
+			</div>
+		</main>
+		@@include('html/form.html')
+		@@include('html/footer.html',{})
+		<script type="module" src="js/app.min.js"></script>
+	</body>
+</html>

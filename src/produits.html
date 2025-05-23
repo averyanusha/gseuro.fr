@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+	@@include('html/head.html',{
+	"title":"GSEURO - produits"
+	})
+	<body>
+		@@include('html/header.html',{})
+		<main>
+			<section class="produits hero">
+				@@include('html/nav-bar.html',{})
+			</section>
+			<div class="description container">
+				<button class="sticky-button button">
+					<a href="#contact">nous contacter</a>
+				</button>
+				<h1 class="description__title">
+					nous offrons une vaste gamme de produits
+				</h1>
+				<p class="description__text">
+					bla bla text describing products, types of products, best solution for everybody
+				</p>
+			</div>
+			<section class="catalog container">
+				<div class="catalog__show">
+					<ul class="catalog__products">
+						<li class="product">
+							<button class="product__button">
+								<h3 class="products__title">Fills et cables</h3>
+								<img src="img/fills-et-cables.png" alt="" class="product__img">
+							</button>
+						</li>
+						<div class="card" id="card">
+							<button class="card__close">x</button>
+							<div class="card__container">
+								<div class="card__left">
+								<h4 class="card__title products__title">
+									Fills et cables
+								</h4>
+								<p class="card__text">
+									Nos fils et câbles électriques garantissent une distribution d’énergie fiable et sécurisée pour tous vos projets de construction. Disponibles en différentes sections et matériaux, ils répondent aux normes les plus strictes pour assurer une installation durable et performante.
+								</p>
+							</div>
+							<div class="card__right">
+								<img src="img/fills-et-cables-card-img.jpg" alt="cables" class="card__img">
+							</div>
+							</div>
+						</div>
+						<li class="product right">
+							<button class="product__button">
+								<h3 class="products__title">Préfilé</h3>
+								<img src="img/préfils-isolé.png" alt="" class="product__img">
+							</button>
+						</li>
+						<div class="card">
+							<button class="card__close">x</button>
+							<div class="card__container">
+								<div class="card__left">
+									<h4 class="card__title products__title">
+										Préfilé
+									</h4>
+									<p class="card__text">
+										Le câble préfilé est une solution pratique et rapide pour vos installations électriques. Déjà gainé et prêt à l’emploi, il simplifie la pose et réduit le temps d’installation tout en assurant une protection optimale des conducteurs.
+									</p>
+								</div>
+								<div class="card__right">
+									<img src="img/prefile-card-img.jpg" alt="prefile" class="card__img">
+								</div>
+							</div>
+						</div>
+						<li class="product">
+							<button class="product__button">
+								<h3 class="product__title products__title">Conduits</h3>
+								<img src="img/gaine-Préfilée.png" alt="" class="product__img">
+							</button>
+						</li>
+						<div class="card">
+							<button class="card__close">x</button>
+							<div class="card__container">
+								<div class="card__left">
+									<h4 class="card__title products__title">
+										Conduits
+									</h4>
+									<p class="card__text">
+										La conduite préfilée combine un conduit électrique et des câbles préinstallés, offrant une solution complète pour vos installations. Idéale pour le passage des câbles dans les murs et les plafonds, elle facilite le câblage tout en garantissant une excellente protection mécanique.
+									</p>
+								</div>
+								<div class="card__right">
+									<img src="img/conduit-prefile.jpg" alt="conduit-prefile" class="card__img">
+								</div>
+							</div>
+						</div>
+						<li class="product right">
+							<button class="product__button">
+								<h3 class="products__title">Mise à la terre</h3>
+								<img src="img/cuivre-nu.png" alt="" class="product__img">
+							</button>
+						</li>
+						<div class="card">
+							<button class="card__close">x</button>
+							<div class="card__container">
+								<div class="card__left">
+									<h4 class="card__title products__title">
+										Mise à la terre
+									</h4>
+									<p class="card__text">
+										Essentielle pour la sécurité des installations électriques, notre gamme de solutions de mise à la terre assure une protection efficace contre les surtensions et les risques électriques. Nos conducteurs et accessoires de mise à la terre sont conformes aux normes en vigueur pour garantir la sécurité des bâtiments et de leurs occupants.
+									</p>
+								</div>
+								<div class="card__right">
+									<img src="img/mise-a-la-terre.png" alt="cuivre-mise-a-la-terre" class="card__img">
+								</div>
+							</div>
+						</div>
+					</ul>
+				</div>
+			</section>
+		</main>
+		@@include('html/form.html')
+		@@include('html/footer.html',{})
+		<script src="js/app.min.js"></script>
+	</body>
+</html>
