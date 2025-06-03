@@ -1,114 +1,90 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const form = document.getElementById('form');
-  const result = document.getElementById('result');
-  const email = document.getElementById('mail');
-  const phone = document.getElementById('phone');
-  const emailError = document.querySelector('#mail + span.error');
-  const phoneError = document.querySelector('#phone + span.error');
+const form = document.getElementById("form");
+const button = document.getElementById("form-button");
 
-  form.addEventListener('submit', (event) => {
-    // Reset errors
-    emailError.textContent = '';
-    phoneError.textContent = '';
-    
-    let hasErrors = false;
-    
-    if (!email.validity.valid) {
-      showEmailError();
-      hasErrors = true;
-    }
-    
-    if (!phone.validity.valid) {
-      showPhoneError();
-      hasErrors = true;
-    }
-    
-    if (hasErrors) {
-      event.preventDefault();
-      return;
-    }
-    
-    // Optional: if you want to handle the form submission with AJAX instead
-    // Uncomment this code and add a "return false" after it
-    /*
-    event.preventDefault();
-    
-    const formData = new FormData(form);
-    
-    fetch('/submit-form', {
-      method: 'POST',
-      body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        result.innerHTML = '<p>Form submitted successfully!</p>';
-        form.reset();
-      } else {
-        result.innerHTML = '<p>Error submitting form. Please try again.</p>';
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      result.innerHTML = '<p>An error occurred. Please try again later.</p>';
-    });
-    */
-  });
+form.noValidate = true;
 
-  function showEmailError() {
-    if (email.validity.valueMissing) {
-      emailError.classList.add("visible");
-      emailError.textContent = "Veuillez remplir ce champ!";
-    } else if (email.validity.typeMismatch) {
-      emailError.classList.add("visible");
-      emailError.textContent = "Veuillez renseigner une adresse email valide!";
-    }
+form.addEventListener("submit", validateForm);
+
+function checkName (name, errorElement) {
+  const nameInput = name.value.trim();
+  if (nameInput === "") {
+    displayError(name, errorElement, "Nom requis");
+    return false;
+  }
+  if (nameInput.lenght < 2) {
+    displayError(name, errorElement, "Le nom doit contenir plus de 2 caractères");
+    return false;
+  }
+  displayError(name, errorElement);
+  return true;
+}
+
+function checkEmail (email, errorElement) {
+  const emailInput = email.value.trim();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (emailInput === "") {
+    displayError(email, errorElement, "Veuillez fournir un email valide");
+    return false;
+  }
+  if (!emailRegex.test(emailInput)){
+    displayError(email, errorElement, "Le format de l'email n'est pas correct");
+    return false;
+  }
+  displayError(email, errorElement);
+  return true;
+}
+
+function checkPhone (phone, errorElement) {
+  const phoneInput = phone.value.trim();
+  const phoneRegex = /^(?:(?:\+|00)33[\s.-]?[1-9](?:[\s.-]?\d{2}){4}|0[1-9](?:[\s.-]?\d{2}){4})$/;
+  if (phoneInput === ""){
+    displayError(phone, errorElement, "Veuillez fournir un numéro de téléphone");
+    return false;
+  }
+  if (!phoneRegex.test(phoneInput)){
+    displayError(phone, errorElement, "Le format du numéro de téléphone n'est pas correct");
+    return false;
+  }
+  displayError(phone, errorElement);
+  return true;
+}
+
+function displayError (name, errorElement, message) {
+  if (message) {
+    name.classList.add("invalid");
+    errorElement.textContent = message;
+  } else {
+    name.classList.remove("invalid");
+    errorElement.textContent = "";
+  }
+}
+
+function validateForm(e){
+  e.preventDefault();
+  const form = e.target;
+  let formIsValid = true;
+
+  const name = document.getElementById("first-second-name");
+  const nameError = document.getElementById("name-error");
+  const phone = document.getElementById("phone");
+  const phoneError = document.getElementById("phone-error");
+  const email = document.getElementById("email");
+  const emailError = document.getElementById("email-error");
+
+  if (!form.checkValidity) {
+    formIsValid = false;
   }
 
-  function showPhoneError() {
-    if (phone.validity.valueMissing) {
-      phoneError.classList.add("visible");
-      phoneError.textContent = "Veuillez remplir ce champ!";
-    } else if (phone.validity.patternMismatch) {
-      phoneError.classList.add("visible");
-      phoneError.textContent = "Veuillez renseigner un numéro de téléphone valide!";
-    }
+  if (!checkName(name, nameError)){
+    formIsValid = false;
   }
-});
-// form.addEventListener('submit', function(e) {
-//     const formData = new FormData(form);
-//     e.preventDefault();
-
-//     const object = Object.fromEntries(formData);
-//     const json = JSON.stringify(object);
-
-//     result.innerHTML = "Attendez qulques instants..."
-
-//     fetch('https://api.web3forms.com/submit', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 'Accept': 'application/json'
-//             },
-//             body: json
-//         })
-//         .then(async (response) => {
-//             let json = await response.json();
-//             if (response.status == 200) {
-//                 result.innerHTML = json.message;
-//             } else {
-//                 console.log(response);
-//                 result.innerHTML = json.message;
-//             }
-//         })
-//         .catch(error => {
-//             console.log(error);
-//             result.innerHTML = "Something went wrong!";
-//         })
-//         .then(function() {
-//             form.reset();
-//             setTimeout(() => {
-//                 result.style.display = "none";
-//             }, 3000);
-//         });
-// });
+  if (!checkEmail(email, emailError)){
+    formIsValid = false;
+  }
+  if (!checkPhone(phone, phoneError)) {
+    formIsValid = false;
+  }
+  if (formIsValid) {
+    form.submit();
+  }
+}

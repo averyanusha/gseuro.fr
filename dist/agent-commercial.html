@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 	 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -114,12 +114,13 @@
   <div class="contact__content container">
     <form action="/submit-form" method="POST" enctype="multipart/form-data" class="form" id="form">
       <input type="text" placeholder="Société" class="form__input" id="company" name="company">
-      <input type="text" placeholder="Nom, prenom" class="form__input" id="first-second-name" name="fullName">
+      <input type="text" placeholder="* Nom, prenom" class="form__input" id="first-second-name" name="fullName">
+      <span class="error" id="name-error"></span>
       <input type="text" placeholder="* Téléphone" class="form__input" id="phone" name="telephone" required>
-      <span class="error" aria-live="polite"></span>
-      <input type="email" placeholder="* Mail" class="form__input" id="mail" name="email" required>
-      <span class="error" aria-live="polite"></span>
-      <button type="submit" class="form__button form__input">Envoyer</button>
+      <span class="error" id="phone-error"></span>
+      <input type="email" placeholder="* Mail" class="form__input" id="email" name="email" required>
+      <span class="error" id="email-error"></span>
+      <button type="submit" id="form-button" class="form__button form__input">Envoyer</button>
       <div class="result" id="result"></div>
     </form>
   </div>
