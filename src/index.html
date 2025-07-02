@@ -7,9 +7,9 @@
 		@@include('html/header.html',{})
 		<main class="hero">
 			@@include('html/nav-bar.html',{})
-			<button class="sticky-button button">
-				<a href="#contact">nous contacter</a>
-			</button>
+				<a href="#contact">
+					<button class="sticky-button button">nous contacter</button>
+				</a>
 			<div class="hero__content  container">
 				<span>Canalisez vos énergies</span>
 				<h1 class="hero__title">
@@ -17,50 +17,42 @@
 				</h1>
 			</div>
 			<div class="qualities container">
-				<div class="qualities__item">
-					<h2 class="qualities__title">
+					<h2 class="qualities__titles">
 						Choix
 					</h2>
-				</div>
-				<div class="qualities__item">
-					<h2 class="qualities__title">
+					<h2 class="qualities__titles">
 						Disponibilité
 					</h2>
-				</div>
-				<div class="qualities__item">
-					<h2 class="qualities__title">
+					<h2 class="qualities__titles">
 						Reactivité
 					</h2>
-				</div>
-				<div class="qualities__item">
-					<h2 class="qualities__title">
+					<h2 class="qualities__titles">
 						Qualité
 					</h2>
-				</div>
 			</div>
 		</main>
 		<section class="products">
 			<div class="products__item">
 				<a href="produits.html" class="item__link">
-					<img src="img/filles-et-cables.png" alt="cables">
+					<img src="img/fils-et-cable.png" alt="cables">
 					<h3 class="products__title">Filles et Cables</h3>
 				</a>
 			</div>
 			<div class="products__item">
 				<a href="produits.html" class="item__link">
-					<img src="img/préfils-isolé.png" alt="prefilee">
+					<img src="img/prefile.png" alt="prefilee">
 					<h3 class="products__title">Préfilé</h3>
 				</a>
 			</div>
 			<div class="products__item">
 				<a href="produits.html" class="item__link">
-					<img src="img/ga" alt="conduits">
-					<h3 class="products__title">Conduits</h3>
+					<img src="img/gaine-et-accesesoirs.png" alt="conduits">
+					<h3 class="products__title">Gaines et accessoires</h3>
 				</a>
 			</div>
 			<div class="products__item">
 				<a href="produits.html" class="item__link">
-					<img src="img/cuivre.png" alt="cuivre">
+					<img src="img/cuivre-nu.png" alt="cuivre">
 					<h3 class="products__title">Mise à la terre</h3>
 				</a>
 			</div>
@@ -73,24 +65,23 @@
 				<p class="about__description">
 					Fort d’une expérience de plusieurs décennies, GSD est spécialisé dans la vente et la production sur mesure de matériels électriques et plus précisément en fils et câbles, préfilés, conduits plastique et mise à la terre.lklk</p>
 				<p class="about__description">
-					Jouissant de relations particulières avec des fabricants leaders dans leurs pays et domaine, nous intervenons comme agents dépositaires pour assurer vos approvisionnements complets ou vos dépannages</p>
+					Jouissant de relations particulières avec des fabricants leaders dans leurs pays et domaine, nous intervenons comme agents dépositaires pour assurer vos approvisionnements complets ou vos dépannages
+				</p>
+				<img src="img/logo-gseuro.png" alt="gseurodiffusion" class="about__logo">
 			</div>
 			<div class="about__right">
-				<img src="" alt="">
+				<img class="about__img" src="img/illustration-production.jpeg" alt="illustration-site-de-production">
 			</div>
 		</section>
 		<div class="partners">
 			<div class="container">
-				<h4 class="partners__title">Nos partenairs</h4>
-				<div class="partners__wrapper">
-					<img src="img/kablo.png" alt="kablo-logo">
-					<img src="img/alcobre.png" alt="alcobre-logo">
-					<img src="img/pramcro.png" alt="pramcro-logo">
-				</div>
+				<h4 class="partners__title">Ils nous font confiance</h4>
+				<div id="carousel-root"></div>
 			</div>
 		</div>
 		@@include('html/form.html')
 		@@include('html/footer.html',{})
+		<script src="js/react-bundle.js"></script>
 		<script type="module" src="js/app.min.js"></script>
 	</body>
 </html>

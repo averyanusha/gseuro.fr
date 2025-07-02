@@ -3,11 +3,13 @@ import Chart from "chart.js/auto";
 
 
 const header = document.querySelector('.nav');
+const myChart = document.getElementById("yearlyChart");
 const sticky = header.offsetTop;
 const search = document.querySelector('.search');
 let searchQuery = document.querySelector('.search__input');
 let searchResult = document.querySelector('.search__result');
 let searchButton = document.querySelector('.search__button');
+let monthsChart;
 
 const products = document.querySelectorAll('.product');
 const productButtons = document.querySelectorAll('.product__button');
@@ -188,75 +190,113 @@ document.addEventListener('click', (event) => {
 
 // The page for rate of copper
 
-let rate = document.getElementById("rate");
-let rateHeader = document.getElementById("rateHeader")
-const myChart = document.getElementById("weeklyChart");
-const mySecondChart = document.getElementById("yearlyChart");
-
-
-const today = new Date();
-const currentMonth = today.getMonth();
-const currentYear = today.getFullYear();
-const monthsNames = ["Janvier","Fevrier","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","November","Decembre"];
-
-// let dates = [];
-// let months = [];
-// let apiDates = [];
-// let apiMonths = [];
-// let rateChart;
-// let monthlyData = [];
-
-// for (let i = 8; i >= 1; i--) {
-//   const dateObj = new Date(today);
-//   dateObj.setDate(today.getDate() - i);
-//   const displayDate = `${dateObj.getDate()} ${monthsNames[dateObj.getMonth()]}`
-//   dates.push(displayDate);
-//   const apiDate = dateObj.toISOString().split('T')[0];
-//   apiDates.push(apiDate);
-// }
-
-// async function fetchRate(date){
+// async function fetchRateFromServer() {
+//   let rateHeader = document.getElementById("rateHeader");
+//   let ratePage = document.getElementById("rate");
 //   try {
-//     console.log(`Making API call for date: ${date}`);
-//     const response = await fetch(`https://api.metalpriceapi.com/v1/${date}?api_key=ba4a8f5b8340e9310988b13c84c88e3f&base=EUR&currencies=XCU` , {mode: 'cors'});
+//     const response = await fetch("/exchange-rate");
 //     if (!response.ok) {
-//       console.error(`API response not OK for ${date}:`, response.status, response.statusText);
-//       throw new Error(`API response error: ${response.status}`);
+//       throw new Error (`HTTP Error, status: ${response.status}`);
 //     }
-//     const exchangeRate = await response.json();
-//     const today = new Date().toISOString.split('T')[0];
-//     return {
-//       date: today.getTime(),
-//       rate: exchangeRate.rates.XCU,
-//       timeStamp: new Date().getTime()
+//     const data = await response.json();
+//     console.log("[script.js] Received current rate data:", data);
+//     if (typeof data.rate === 'number') {
+//       const eurPerTon = data.rate * 2205;
+//       if (rateHeader) {
+//         rateHeader.textContent = `${eurPerTon.toFixed(1)} eur/Ton`;
+//       }
+//       if (rate) {
+//         ratePage.textContent = `${eurPerTon.toFixed(1)} EUR/TONNE`;
+//       }
+//     } else {
+//         console.error("[script.js] Invalid rate data received:", data);
 //     }
+//   } catch (error) {
+//     console.error("Couldnt fetch the data", error);
 //   }
-//   catch (error) {
-//     console.error("Error fetching exchange data:", error);
+// }
+
+// async function fetchYearlyRates() {
+//   try {
+//     const response = await fetch("/exchange-rate/last-12-months");
+//     if (!response.ok) {
+//       throw new Error(`HTTP errror! Status: ${response.status}`);
+//     }
+//     const data = await response.json();
+//     if (data && Array.isArray(data.labels) && Array.isArray(data.rates)) {
+//       yearlyChart(data.labels, data.rates);
+//     } else {
+//       console.error("Invalid data structure for yearly rates:", data);
+//     }
+//   } catch (error) {
+//     console.error("Erreur de chargement des données:", error);
 //   }
 // }
 
-// const freshRate = await fetchRate();
-
-// if (freshRate) {
+// function yearlyChart (labels, fetchedData) {
+//   if (monthsChart) {
+//     monthsChart.destroy();
+//   }
+//   monthsChart = new Chart(myChart, {
+//     type: 'line',
+//     data: {
+//       backgroundColor: '',
+//       labels: labels.reverse(),
+//       datasets: [{
+//         label: `Prix d'une tonne de cuivre au cours de la dernière année`,
+//         backgroundColor: '#2C5499',
+//         data: ((fetchedData.map(rate => rate * 2205)) + "eur/ton").reverse(),
+//         fill: false,
+//         tension: 0.1,
+//         pointRadius: 5, // Make points slightly larger for easier interaction
+//         pointHoverRadius: 8
+//       }]
+//     },
+//     options: {
+//         responsive: true,
+//         maintainAspectRatio: false, // Allow canvas to resize freely
+//         plugins: {
+//           legend: {
+//             display: true,
+//             position: 'top',
+//             labels: {
+//                 color: '#333' // Legend text color
+//             }
+//           },
+//           tooltip: {
+//             callbacks: {
+//                 label: function(context) {
+//                     let label = context.dataset.label || '';
+//                     if (label) {
+//                         label += ': ';
+//                     }
+//                     if (context.parsed.y !== null) {
+//                         label += new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(context.parsed.y) + '/Ton';
+//                     }
+//                     return label;
+//                 }
+//             }
+//           }
+//         },
+//         scales: {
+//           y: {
+//             title: {
+//               display: true,
+//               text: 'Prix (EUR/Ton)'
+//             }
+//           }
+//         }
+//       }
+//   });
 // }
-// for (let i = 0; i < 12; i++){
-//   let month = (currentMonth - i) % 12;
-//   if (month < 0) month += 12;
-  
-//   let yearOffset = Math.floor((currentMonth - i) / 12);
-//   let year = currentYear + yearOffset;
-  
-//   // Create date object for first day of month
-//   const dateObj = new Date(year, month, 1);
-//   const label = `${monthsNames[month]} ${year}`;
-//   const apiMonth = String(month + 1).padStart(2, '0'); // +1 because months are 0-indexed, padstart adds 0 to ensure the month is 2 digits 
-//   const apiDate = `${year}-${apiMonth}-01`;
-//   months.push(label);
-//   apiMonths.push(apiDate);
-// }
 
-// async function fetchDailyRates() { 
+// fetchRateFromServer();
+// fetchYearlyRates();
+// let dates = [];
+// let apiDates = [];
+// let rateChart;
+
+// async function getDailyRates() { 
   
 //   for (let i = 0; i < apiDates.length; i++) {
 //     const date = apiDates[i];
@@ -284,68 +324,11 @@ const monthsNames = ["Janvier","Fevrier","Mars","Avril","Mai","Juin","Juillet","
 //     }
 //   }
 // }
-
-// async function fetchMonthRates(){
-//   monthlyData = [];
-
-//   for (let i = 0; i <= apiMonths.length; i++){
-//     const date = apiMonths.reverse()[i];
-
-//     try {
-//       let data; 
-
-//       data = await fetchRate(date);
-//       if (data && data.rates && data.rates.XCU) {
-//         monthlyData.push(data.rates.XCU);
-//       } else {
-//         console.warn(`No rate data for ${date}`);
-//         monthlyData.push(null);
-//       }
-//     }
-//     catch (error) {
-//       console.error(`Error fetching data for ${date}:`, error);
-//       monthlyData.push(null);
-//     }
-//   }
-//   yearlyChart(monthlyData);
+// for (let i = 8; i >= 1; i--) {
+//   const dateObj = new Date(today);
+//   dateObj.setDate(today.getDate() - i);
+//   const displayDate = `${dateObj.getDate()} ${monthsNames[dateObj.getMonth()]}`
+//   dates.push(displayDate);
+//   const apiDate = dateObj.toISOString().split('T')[0];
+//   apiDates.push(apiDate);
 // }
-
-
-// async function fetchLatestRate(){
-//   try {
-//     const response = await fetch('https://api.metalpriceapi.com/v1/latest?api_key=ba4a8f5b8340e9310988b13c84c88e3f&base=EUR&currencies=XCU' , {mode: 'cors'});
-//     const exchangeRate = await response.json();
-//     if (rateHeader) {
-//       rateHeader.textContent = `${exchangeRate.rates.XCU.toFixed(3)} EUR/LB`;
-//     }
-
-//     if (rate) {
-//       rate.textContent = `${exchangeRate.rates.XCU} EUR/LB`;
-//     }
-//     return exchangeRate;
-//   }
-//   catch (error) {
-//     console.error("Error fetching exchange data:", error);
-//   }
-// }
-
-// function yearlyChart (fetchedData) {
-//   if (secondChart) {
-//     secondChart.destroy();
-//   }
-//   secondChart = new Chart(mySecondChart, {
-//     type: 'line',
-//     data: {
-//       backgroundColor: '',
-//       labels: months.reverse(),
-//       datasets: [{
-//         label: `Prix d'une livre de cuivre au cours de la dernière année`,
-//         backgroundColor: '#2C5499',
-//         data: fetchedData
-//       }]
-//     },
-//   });
-// }
-
-// console.log(apiMonths);
-// fetchMonthRates();

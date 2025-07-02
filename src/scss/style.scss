@@ -6,6 +6,9 @@
 
 @use "libs/variables" as *;
 
+@use "vendor/calendar" as *;
+
+
 body {
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -84,7 +87,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 10;
   width: 100%;
   background: $whiteColor;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -151,16 +154,35 @@ body {
 	color: $whiteColor;
 	justify-content: space-evenly;
 	padding-bottom: 50px;
-
-	&__item {
-		padding: 50px;
-		text-align: center;
+	&__blue {
+		background-color: $mainColor;
+		display: block;
 	}
-
 	&__title {
+		font-size: 40px;
+		text-align: center;
+		padding: 20px;
+		font-weight: bold;
+	}
+	&__container {
+		display: flex;
+		justify-content: space-evenly;
+	}
+	&__item {
+		max-width: 10%;
+		text-align: center;
+		margin: 10px;
+	}
+	&__titles {
 		font-size: 30px;
 		font-weight: 200;
 		margin-bottom: 10px;
+		padding: 50px;
+		text-align: center;
+	}
+	&__description {
+		font-size: 20px;
+		margin-top: 30px;
 	}
 }
 
@@ -169,25 +191,27 @@ body {
 	justify-content: space-evenly;
 	margin: auto;
 	box-sizing: border-box;
-	overflow: hidden;
 	margin: 120px 50px;
 
 	&__item {
-		max-width: 30vw;
-		max-height: 50vh;
+		max-width: 20vw;
 		padding: 20px 0;
 		display: flex;
 		flex-direction: column;
 		align-items:stretch;
-		flex-wrap: wrap;
 		text-align: center;
 		color: $blackColor;
 	}
+	&__item img {
+		width: 100%;
+		object-fit: fill;
+	}
 
 	&__title {
-		font-size: 32px;
 		text-transform: uppercase;
 		margin-top: 20px;
+		text-align: left;
+		font-size: 24px;
 	}
 }
 
@@ -201,107 +225,182 @@ body {
 
 .partners {
 	margin-top: 100px;
-	&__wrapper {
-		display: flex;
-		justify-content: space-evenly;
-	}
 	&__title {
 		font-size: 48px;
+		font-weight: bold;
+		color: $blackColor;
 		text-align: center;
+	}
+	&-container {
+		width: 100%; // Equivalent to Tailwind 'w-full'
+		overflow: hidden; // Equivalent to Tailwind 'overflow-hidden'
+		margin: 20px auto;
+		padding-top: 1rem; // Equivalent to Tailwind 'py-4' (16px)
+		padding-bottom: 1rem; // Equivalent to Tailwind 'py-4' (16px)
+		max-width: 96rem;
+	}
+	&-slide {
+		flex-shrink: 0; // Equivalent to Tailwind 'flex-shrink-0'
+		width: calc(33.33% - 20px); // Base width for 3 items per view with 20px spacing
+		height: 6rem; // Equivalent to Tailwind 'h-24' (96px)
+		display: flex; // Equivalent to Tailwind 'flex'
+		align-items: center; // Equivalent to Tailwind 'items-center'
+		justify-content: center; // Equivalent to Tailwind 'justify-center'
+		margin-right: 1.25rem;
+
+		img {
+			object-fit: fill;
+		}
+	}
+	&-track {
+		display: flex;
 	}
 }
 
+@media (min-width: 768px) {
+	.partners-slide {
+		width: calc(25% - 22.5px);
+		margin-right: 1.875rem;
 
-.carousel {
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}
+
+@media (min-width: 1024px) {
+	.partners-slide {
+		width: calc(20% - 32px);
+		margin-right: 2.5rem;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}
+
+.about {
+	margin: 50px 0px;
 	display: flex;
-  align-items: baseline;
-	position: relative;
-	margin: 100px;
-
-	&__track {
-		max-height: 40vh;
-		transition: height 0.3s ease;
+	justify-content: space-evenly;
+	min-height: 60vh;
+	&__left{
+		max-width: 30%;
 	}
-
-	&__slide {
-		display: none;
-		position: relative;
-		opacity: 0;
-		transition: opacity 0.3s ease-in-out;
-		z-index: 0;
+	&__title{
+		font-weight: bold;
+		font-size: 32px;
 	}
-
-	&__slide.current__slide {
-		display: flex;
-		align-self: baseline;
-		opacity: 1;
-		z-index: 1;
+	h1{
+		font-size: 40px;
 	}
-
-	&__slide div {
-		padding: 10px 50px;
-	}
-
-	&__nav {
-		margin-top: 20px;
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-	}
-
-	&__indicator {
-		position: relative;
-		border: $mainColor 1px solid;
-		border-radius: 50px;
-		width: 20px;
-		height: 20px;
+	&__description {
 		margin-top: 30px;
-		transition: 0.5s ease;
-		cursor: pointer;
+		line-height: 115%;
 	}
-
-	&__indicator.active {
+	&__right{
+		max-width: 30%;
+	}
+	&__img{
+		width: 100%;
+		object-fit: contain;
+	}
+	&__line {
+		display: block;
+		height: 2px;
+		width: 100%;
+		margin-top: 10px;
 		background-color: $mainColor;
 	}
 }
 
-.slide {
-	&__left {
-		display: flex;
-		flex-direction: column;
-		gap: 1.5rem;
-	}
 
-	&__title {
-		font-size: 32px;
-		color: $mainColor;
-	}
+// .carousel {
+// 	display: flex;
+//   align-items: baseline;
+// 	position: relative;
+// 	margin: 100px;
 
-	&__description {
-		color: rgba(0, 0, 0, .7);
-	}
+// 	&__track {
+// 		max-height: 40vh;
+// 		transition: height 0.3s ease;
+// 	}
 
-	&__right {
-		min-width: 50%;
-		border-radius: 30px;
-	}
-	&__img {
-		border-radius: 30px;
-		width: 100%;
-		object-fit: contain;
-	}
+// 	&__slide {
+// 		display: none;
+// 		position: relative;
+// 		opacity: 0;
+// 		transition: opacity 0.3s ease-in-out;
+// 		z-index: 0;
+// 	}
 
-	&__logo {
-		width: 30%;
-	}
-}
+// 	&__slide.current__slide {
+// 		display: flex;
+// 		align-self: baseline;
+// 		opacity: 1;
+// 		z-index: 1;
+// 	}
+
+// 	&__slide div {
+// 		padding: 10px 50px;
+// 	}
+
+// 	&__nav {
+// 		margin-top: 20px;
+// 		display: flex;
+// 		flex-direction: column;
+// 		gap: 1rem;
+// 	}
+
+// 	&__indicator {
+// 		position: relative;
+// 		border: $mainColor 1px solid;
+// 		border-radius: 50px;
+// 		width: 20px;
+// 		height: 20px;
+// 		margin-top: 30px;
+// 		transition: 0.5s ease;
+// 		cursor: pointer;
+// 	}
+
+// 	&__indicator.active {
+// 		background-color: $mainColor;
+// 	}
+// }
+
+// .slide {
+// 	&__left {
+// 		display: flex;
+// 		flex-direction: column;
+// 		gap: 1.5rem;
+// 	}
+
+// 	&__title {
+// 		font-size: 32px;
+// 		color: $mainColor;
+// 	}
+
+// 	&__description {
+// 		color: rgba(0, 0, 0, .7);
+// 	}
+
+// 	&__right {
+// 		min-width: 50%;
+// 		border-radius: 30px;
+// 	}
+// 	&__img {
+// 		border-radius: 30px;
+// 		width: 100%;
+// 		object-fit: contain;
+// 	}
+
+// 	&__logo {
+// 		width: 30%;
+// 	}
+// }
 
 
 // produits page
-
-.produits {
-	background-image: none;	
-}
 
 .description {
 	color: $blackColor;
@@ -360,7 +459,7 @@ body {
 .card {
 	background-color: #F5F5F5;
 	position: fixed;
-	z-index: 10;
+	z-index: 11;
 	top: 50%;
 	left: 50%;
 	width: 70vw;
@@ -380,25 +479,21 @@ body {
 
 	&__container {
 		text-align: left;
-		display: flex;
-		padding: 50px;
+		padding: 50px 100px 100px 100px;
 	}
-
-	&__left{
-		width: 100%;
-	}
-
 	&__title {
-		margin: 50px 0;
 	}
-
-	&__right{
-		padding: 30px;
+	&__text {
+		font-size: 24px;
+		padding: 20px 0px;
 	}
-}
-
-.card__right img {
-	object-fit: fill;
+	&__list li{
+		padding: 10px 0px;
+	}
+	&__button {
+		margin-top: 30px;
+		font-size: 18px;
+	}
 }
 
 .show {

@@ -6,19 +6,14 @@
 	<body>
 		@@include('html/header.html',{})
 		<main>
-			<section class="produits hero">
-				@@include('html/nav-bar.html',{})
-			</section>
+			@@include('html/nav-bar.html',{})
 			<div class="description container">
-				<button class="sticky-button button">
-					<a href="#contact">nous contacter</a>
-				</button>
+				<a href="#contact">
+					<button class="sticky-button button">nous contacter</button>
+				</a>
 				<h1 class="description__title">
-					nous offrons une vaste gamme de produits
+					Une gamme complète et disponible 
 				</h1>
-				<p class="description__text">
-					bla bla text describing products, types of products, best solution for everybody
-				</p>
 			</div>
 			<section class="catalog container">
 				<div class="catalog__show">
@@ -32,17 +27,22 @@
 						<div class="card" id="card">
 							<button class="card__close">x</button>
 							<div class="card__container">
-								<div class="card__left">
 								<h4 class="card__title products__title">
-									Fills et cables
+									Fils et câbles domestiques et industriels
 								</h4>
 								<p class="card__text">
-									Nos fils et câbles électriques garantissent une distribution d’énergie fiable et sécurisée pour tous vos projets de construction. Disponibles en différentes sections et matériaux, ils répondent aux normes les plus strictes pour assurer une installation durable et performante.
+									GSD vous propose une gamme complète de fils et câbles normalisés basse-tension, courants forts et courant faibles en conditionnements standards ou à la coupe.
 								</p>
-							</div>
-							<div class="card__right">
-								<img src="img/fills-et-cables-card-img.jpg" alt="cables" class="card__img">
-							</div>
+								<ul class="card__list">
+									<li>H07V-U/R</li>
+									<li>U 1000 R2V</li>
+									<li>FR-NO7V-AR</li>
+									<li>CR1-C1</li>
+									<li>Courants faibles </li>
+								</ul>
+								<a href="contact.html">
+									<button class="card__button button">Demander la fiche technique et obtenir un devis</button>
+								</a>
 							</div>
 						</div>
 						<li class="product right">
@@ -54,39 +54,45 @@
 						<div class="card">
 							<button class="card__close">x</button>
 							<div class="card__container">
-								<div class="card__left">
 									<h4 class="card__title products__title">
-										Préfilé
+										Gaines préfilées prêtes à poser
 									</h4>
 									<p class="card__text">
-										Le câble préfilé est une solution pratique et rapide pour vos installations électriques. Déjà gainé et prêt à l’emploi, il simplifie la pose et réduit le temps d’installation tout en assurant une protection optimale des conducteurs.
+										GSD vous propose une fabrication sur mesure de toutes les compositions courants forts et courants faibles dans les conduits ICTA 3422 diam.16 à 40
 									</p>
-								</div>
-								<div class="card__right">
-									<img src="img/prefile-card-img.jpg" alt="prefile" class="card__img">
-								</div>
+									<ul class="card__list">
+										<li>ICTA 16 c.100m 35 Rouleaux par palettes </li>
+										<li>ICTA 20 c.100m 28 Rouleaux par palettes </li>
+										<li>ICTA 25 c.100m 20 Rouleaux par palettes </li>
+										<li>ICTA 32/40 c.100m 20 Rouleaux par palettes</li>
+									</ul>
+									<a href="contact.html">
+										<button class="card__button button">Demander la fiche technique et obtenir un devis</button>
+									</a>
 							</div>
 						</div>
 						<li class="product">
 							<button class="product__button">
-								<h3 class="product__title products__title">Conduits</h3>
+								<h3 class="product__title products__title">Gaines et accessoires</h3>
 								<img src="img/gaine-Préfilée.png" alt="" class="product__img">
 							</button>
 						</li>
 						<div class="card">
 							<button class="card__close">x</button>
 							<div class="card__container">
-								<div class="card__left">
 									<h4 class="card__title products__title">
-										Conduits
+										Gaines et accessoires 
 									</h4>
 									<p class="card__text">
-										La conduite préfilée combine un conduit électrique et des câbles préinstallés, offrant une solution complète pour vos installations. Idéale pour le passage des câbles dans les murs et les plafonds, elle facilite le câblage tout en garantissant une excellente protection mécanique.
+										GSD vous propose sa gamme complète de conduits ICTA 3422 annelée, cintrable, avec ou sans tire-fil en acier galvanisé. Conditionnement en couronnes standards ou grandes longueurs. 
 									</p>
-								</div>
-								<div class="card__right">
-									<img src="img/conduit-prefile.jpg" alt="conduit-prefile" class="card__img">
-								</div>
+									<ul class="card__list">
+										<li>Gaine ICTA 3422 annelée</li>
+										<li>Diamètres extérieurs 16 – 20 – 25 – 32 – 40</li>
+									</ul>
+									<a href="contact.html">
+										<button class="card__button button">Demander la fiche technique et obtenir un devis</button>
+									</a>
 							</div>
 						</div>
 						<li class="product right">
@@ -98,17 +104,22 @@
 						<div class="card">
 							<button class="card__close">x</button>
 							<div class="card__container">
-								<div class="card__left">
 									<h4 class="card__title products__title">
 										Mise à la terre
 									</h4>
 									<p class="card__text">
-										Essentielle pour la sécurité des installations électriques, notre gamme de solutions de mise à la terre assure une protection efficace contre les surtensions et les risques électriques. Nos conducteurs et accessoires de mise à la terre sont conformes aux normes en vigueur pour garantir la sécurité des bâtiments et de leurs occupants.
+										GSD vous propose une large gamme de matériel de mise à la terre, pour des installations électriques fiables, sûres et de qualité.
 									</p>
-								</div>
-								<div class="card__right">
-									<img src="img/mise-a-la-terre.png" alt="cuivre-mise-a-la-terre" class="card__img">
-								</div>
+									<ul class="card__list">
+										<li>Câblette de cuivre nu rouge recuit en tourets ou à la coupe</li>
+										<li>Piquets de terre acier cuivré diam. 14 auto-allongeable 1.00m et 1.50m</li>
+										<li>Brides de connexion laiton pour piquets</li>
+										<li>Barrettes de coupure hautes et basses</li>
+										<li>Connecteurs en « C », têtes d’enfoncement… </li>
+									</ul>
+									<a href="contact.html">
+										<button class="card__button button">Demander la fiche technique et obtenir un devis</button>
+									</a>
 							</div>
 						</div>
 					</ul>

@@ -9,6 +9,7 @@ export const path = {
 	build: {
 		js: `${buildFolder}/js/`,
 		css: `${buildFolder}/css/`,
+		keenSliderCss: `${buildFolder}/css/keen-slider/`,
 		html: `${buildFolder}/`,
 		images: `${buildFolder}/img/`,
 		fonts: `${buildFolder}/fonts/`,
@@ -20,7 +21,10 @@ export const path = {
 		svg: `${srcFolder}/img/**/*.svg`,
 		scss: `${srcFolder}/scss/style.scss`,
 		html: `${srcFolder}/*.html`, //.pug
-		files: `${srcFolder}/files/**/*.*`,
+		files: [
+			`${srcFolder}/files/**/*.*`,
+			`./node_modules/keen-slider/keen-slider.min.css` // Add this
+		],
 		svgicons: `${srcFolder}/svgicons/*.svg`,
 	},
 	watch: {
@@ -28,7 +32,8 @@ export const path = {
 		scss: `${srcFolder}/scss/**/*.scss`,
 		html: `${srcFolder}/**/*.html`, //.pug
 		images: `${srcFolder}/img/**/*.{jpg,jpeg,png,svg,gif,ico,webp}`,
-		files: `${srcFolder}/files/**/*.*`
+		files: `${srcFolder}/files/**/*.*`,
+		react: `${srcFolder}/react/**/*.{js,jsx}`,
 	},
 	clean: buildFolder,
 	buildFolder: buildFolder,

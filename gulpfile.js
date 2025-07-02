@@ -1,9 +1,7 @@
-// Основной модуль
 import gulp from "gulp";
-// Импорт путей
 import { path } from "./gulp/config/path.js";
-// Импорт общих плагинов
 import { plugins } from "./gulp/config/plugins.js";
+import nodemon from "gulp-nodemon";
 
 // Передаем значения в глобальную переменную
 global.app = {
@@ -28,12 +26,28 @@ import { zip } from "./gulp/tasks/zip.js";
 import { ftp } from "./gulp/tasks/ftp.js";
 
 // Наблюдатель за изменениями в файлах
-function watcher() {
+function startBackend(cb) {
+  let started = false;
+  return nodemon({
+    script: 'server.js',
+    ext: 'js',
+    env: { PORT: 3000 },
+    ignore: ['gulp/', 'src/', 'build/', 'node_modules/']
+  }).on('start', function () {
+    if (!started) {
+      cb();
+      started = true;
+    }
+  });
+}
+
+function watchFrontend() {
 	gulp.watch(path.watch.files, copy);
 	gulp.watch(path.watch.html, html); //gulp.series(html, ftp)
 	gulp.watch(path.watch.scss, scss);
 	gulp.watch(path.watch.js, js);
 	gulp.watch(path.watch.images, images);
+  gulp.watch('./src/react/**/*.{js,jsx}', js);
 }
 
 // Последовательная обработака шрифтов
@@ -43,7 +57,7 @@ const fonts = gulp.series(otfToTtf, ttfToWoff, fontsStyle);
 const mainTasks = gulp.series(fonts, gulp.parallel(copy, html, scss, js, images, svgSpriteTask));
 
 // Построение сценариев выполнения задач
-const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
+const dev = gulp.series(reset, mainTasks, gulp.parallel(startBackend, watchFrontend, server));
 const build = gulp.series(reset, mainTasks);
 const deployZIP = gulp.series(reset, mainTasks, zip);
 const deployFTP = gulp.series(reset, mainTasks, ftp);
@@ -54,6 +68,5 @@ export { dev }
 export { build }
 export { deployZIP }
 export { deployFTP }
-
 // Выполнение сценария по умолчанию
 gulp.task('default', dev);
